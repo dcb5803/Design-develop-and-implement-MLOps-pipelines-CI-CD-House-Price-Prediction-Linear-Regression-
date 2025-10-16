@@ -1,11 +1,11 @@
-name: Deploy House Price Predictor
+name: CI/CD for House Price App
 
 on:
   push:
     branches: [main]
 
 jobs:
-  build-and-deploy:
+  build-and-test:
     runs-on: ubuntu-latest
 
     steps:
@@ -19,10 +19,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        python -m pip install --upgrade pip
-        pip install gradio scikit-learn pandas
+        pip install -r requirements.txt
 
     - name: Run app test
       run: python app.py --help
-
-    # Optional: Deploy to Hugging Face Spaces or other platforms
