@@ -1,0 +1,28 @@
+name: Deploy House Price Predictor
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.10"
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install gradio scikit-learn pandas
+
+    - name: Run app test
+      run: python app.py --help
+
+    # Optional: Deploy to Hugging Face Spaces or other platforms
